@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 import Search from './Search';
 import '../styles/SearchPage.css';
@@ -10,14 +10,14 @@ import RoomIcon from '@material-ui/icons/Room';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DescriptionIcon from '@material-ui/icons/Description';
 import useGoogleSearch from './useGoogleSearch';
-import Response from '../response';
 
 function SearchPage() {
   const [{ term }, dispatch] = useStateValue();
-  // const { data } = useGoogleSearch(term);
-  // console.log(data);
+  const { data } = useGoogleSearch(term);
+  console.log(data);
 
-  const data = Response;
+  //Mock API call
+  //const data = Response;
 
   return (
     <div className="searchPage">
@@ -70,7 +70,7 @@ function SearchPage() {
           </div>
         </div>
       </div>
-      {true && (
+      {term && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
             About {data?.searchInformation.formattedTotalResults} results in
@@ -78,7 +78,17 @@ function SearchPage() {
           </p>
           {data?.items.map((item) => (
             <div className="searchPage__result">
-              <a href={item.link}>{item.displayLink}</a>
+              <a className="searchPage__resultLink" href={item.link}>
+                {item.pagemap?.cse_image?.length > 0 &&
+                  item.pagemap?.cse_image[0]?.src && (
+                    <img
+                      className="searchPage__resultImage"
+                      src={item.pagemap?.cse_image[0].src}
+                      alt=""
+                    />
+                  )}
+                {item.displayLink}
+              </a>
               <a className="searchPage__resultTitle" href={item.link}>
                 <h2>{item.title}</h2>
               </a>

@@ -16,6 +16,7 @@
   padding: 10px 20px;
   font-size: medium;
   border: none;
+  height: 28px;
 }
 
 .search__input > input:focus {

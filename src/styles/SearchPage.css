@@ -9,6 +9,9 @@
   border-bottom: 1px solid lightgray;
 }
 
+@media only screen and (max-width: 640px) {
+}
+
 .searchPage__logo {
   object-fit: contain;
   height: 50px;

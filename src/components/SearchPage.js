@@ -12,6 +12,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import useGoogleSearch from './useGoogleSearch';
 
 function SearchPage() {
+  // @ts-ignore
   const [{ term }, dispatch] = useStateValue();
   const { data } = useGoogleSearch(term);
   console.log(data);
